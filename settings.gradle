@@ -1,0 +1,4 @@
+rootProject.name = 'facebook-feed-demo'
+
+include 'post-reader'
+include 'post-writer'
