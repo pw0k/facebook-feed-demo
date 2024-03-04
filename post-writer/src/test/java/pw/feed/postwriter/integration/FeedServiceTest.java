@@ -13,7 +13,7 @@ import pw.feed.postwriter.model.user.UserRepository;
 import pw.feed.postwriter.service.FeedService;
 import pw.feed.postwriter.service.FollowService;
 import pw.feed.postwriter.service.GroupService;
-import pw.feed.postwriter.service.record.PostRecord;
+import pw.feed.postwriter.service.dto.PostRecord;
 
 import java.util.List;
 

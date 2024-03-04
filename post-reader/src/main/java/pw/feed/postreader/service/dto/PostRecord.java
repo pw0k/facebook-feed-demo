@@ -1,4 +1,4 @@
-package pw.feed.postwriter.service.record;
+package pw.feed.postreader.service.dto;
 
 import java.time.Instant;
 

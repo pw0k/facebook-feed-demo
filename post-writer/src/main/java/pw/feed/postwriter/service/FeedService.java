@@ -8,7 +8,7 @@ import pw.feed.postwriter.model.post.Post;
 import pw.feed.postwriter.model.post.PostRepository;
 import pw.feed.postwriter.model.user.User;
 import pw.feed.postwriter.model.user.UserRepository;
-import pw.feed.postwriter.service.record.PostRecord;
+import pw.feed.postwriter.service.dto.PostRecord;
 
 import java.util.Comparator;
 import java.util.List;
@@ -22,9 +22,9 @@ public class FeedService {
     private final PostRepository postRepository;
 
     @Transactional(readOnly = true)
-    public List<PostRecord> getFeedForUser(String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new IllegalArgumentException("User not found : " + username));
+    public List<PostRecord> getFeedForUser(String userName) {
+        User user = userRepository.findByUsername(userName)
+                .orElseThrow(() -> new IllegalArgumentException("User not found : " + userName));
 
         List<Integer> userFollowsIds = user.getUserFollows().stream()
                 .map(userFollow -> userFollow.getFollowUser().getId())

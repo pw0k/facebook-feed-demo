@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
+import pw.feed.postreader.service.dto.PostRecord;
 import reactor.core.publisher.Flux;
 
-import java.time.Instant;
 
 @RestController
-@RequestMapping("/feed")
+@RequestMapping("/api/feed")
 @RequiredArgsConstructor
 public class FeedController {
 
     private final WebClient webClient;
-    private final static String YML = "YML";
+//    private final static String YML = "YML";
 
 //    @GetMapping("/")
 //    public Flux<PostDao> home() {
@@ -24,10 +24,10 @@ public class FeedController {
 //        return Flux.fromIterable(posts);
 //    }
 
-    @GetMapping("/{userId}")
-    public Flux<PostRecord> fetchUserFeed(@PathVariable Integer userId) {
-        return getUserFeed(userId);
-    }
+//    @GetMapping("/{userId}")
+//    public Flux<PostRecord> fetchUserFeed(@PathVariable Integer userId) {
+//        return getUserFeed(userId);
+//    }
 
 //    private PostDao createPost(Integer num){
 //        return PostDao.builder()
@@ -37,19 +37,12 @@ public class FeedController {
 //                .createdAt(LocalDateTime.of(2024,02,01,14,00,00))
 //                .build();
 //    }
-
-    public Flux<PostRecord> getUserFeed(Integer userId) {
+    @GetMapping("/{userName}")
+    public Flux<PostRecord> getUserFeed(@PathVariable String userName) {
         return webClient.get()
-                .uri("/api/feed/{userId}", userId)
+                .uri("/api/pw/feed/{userName}", userName)
                 .retrieve()
                 .bodyToFlux(PostRecord.class); // Assuming Post class is defined and matches the structure of the data
     }
-
-//    private PostRecord convertToRecord(Post post) {
-//        // Assuming PostDto exists and maps relevant Post fields to DTO fields
-//        return new PostRecord(post.getTitle(), post.getDescription(), post.getCreatedAt());
-//    }
-
-    record PostRecord(String title, String description, Instant createdAt) {}
 
 }

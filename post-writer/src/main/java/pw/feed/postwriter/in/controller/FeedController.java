@@ -6,23 +6,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pw.feed.postwriter.model.post.Post;
 import pw.feed.postwriter.service.FeedService;
-import pw.feed.postwriter.service.record.PostRecord;
+import pw.feed.postwriter.service.dto.PostRecord;
 
-import java.time.Instant;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/feed")
+@RequestMapping("/api/pw/feed")
 @RequiredArgsConstructor
 //todo rewrite dto
 public class FeedController {
 
     private final FeedService feedService;
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<PostRecord>> getUserFeed(@PathVariable String username) {
-        return ResponseEntity.ok(feedService.getFeedForUser(username));
+    @GetMapping("/{userName}")
+    public ResponseEntity<List<PostRecord>> getUserFeed(@PathVariable String userName) {
+        return ResponseEntity.ok(feedService.getFeedForUser(userName));
     }
 }
