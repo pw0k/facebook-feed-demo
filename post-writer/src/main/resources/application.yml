@@ -1,0 +1,18 @@
+server:
+  port : 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/maindb
+    # TODO: Vault or env
+    username: user
+    password: password
+  liquibase:
+    change-log: classpath:db/changelog.xml
+  jpa:
+    # Enable SQL logging
+    show-sql: true
+    # Format the SQL statements for better readability
+    properties:
+      hibernate:
+        format_sql: true
+  sql.init.mode: always

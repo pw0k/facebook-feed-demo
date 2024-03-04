@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  fb-feed-demo-postgres:
+    image: postgres:16.1-alpine
+    restart: unless-stopped
+    environment:
+      #TODO Vault OR env_file
+      POSTGRES_DB: "maindb"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+    ports:
+      - 5433:5432
