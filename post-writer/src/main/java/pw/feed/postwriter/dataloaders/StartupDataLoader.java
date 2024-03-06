@@ -1,4 +1,4 @@
-package pw.feed.postwriter.config;
+package pw.feed.postwriter.dataloaders;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import pw.feed.postwriter.service.UserService;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class DataLoader {
+public class StartupDataLoader {
 
     private final PostRepository postRepository;
     private final FollowService followService;
@@ -30,7 +30,7 @@ public class DataLoader {
             Group group1 = createAndSaveGroup("Pickle team", "Pickle Pickle");
 
             createAndSavePost("Wubba Lubba", "Dub Dub", user1, null);
-            createAndSavePost("I' 'm Mr. Meeseeks", "Look at me!", user2, group1);
+            createAndSavePost("I'm Mr. Meeseeks", "Look at me!", user2, group1);
 
             followService.followUser(user2.getId(), user1.getId());
             groupService.followToGroup(user1.getId(), group1.getId());

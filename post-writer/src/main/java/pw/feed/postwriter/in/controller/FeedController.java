@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/pw/feed")
 @RequiredArgsConstructor
-//todo rewrite dto
 public class FeedController {
 
     private final FeedService feedService;

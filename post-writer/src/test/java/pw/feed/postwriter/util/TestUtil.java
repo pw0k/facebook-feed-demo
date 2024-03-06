@@ -3,10 +3,11 @@ package pw.feed.postwriter.util;
 import pw.feed.postwriter.model.group.Group;
 import pw.feed.postwriter.model.post.Post;
 import pw.feed.postwriter.model.user.User;
+import pw.feed.postwriter.service.dto.PostRecord;
+
+import java.time.Instant;
 
 public final class TestUtil {
-
-    private TestUtil() {}
 
     public static User createUser(String name) {
         return User.builder()
@@ -29,5 +30,9 @@ public final class TestUtil {
                 .user(user)
                 .group(group)
                 .build();
+    }
+
+    public static PostRecord createPostRecord(String title, String desctiption){
+        return new PostRecord(title, desctiption, Instant.now());
     }
 }
