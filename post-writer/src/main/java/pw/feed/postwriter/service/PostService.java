@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pw.feed.postwriter.exception.PostNotFoundException;
-import pw.feed.postwriter.model.post.Post;
-import pw.feed.postwriter.model.post.PostRepository;
+import pw.feed.postwriter.model.post.*;
+import pw.feed.postwriter.service.converter.PostOutboxConverter;
 
 import java.util.List;
 
@@ -14,10 +14,17 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final PostOutboxRepository postOutboxRepository;
+    private final PostOutboxConverter postOutboxConverter;
 
     @Transactional
-    public Post createPost(Post post) {
-        return postRepository.save(post);
+    public Post saveWithOutbox(Post post) {
+        Post savedPost = postRepository.save(post);
+
+        PostOutbox postOutbox = postOutboxConverter.convert(savedPost, PostOutboxEventType.POST_CREATED);
+        postOutboxRepository.save(postOutbox);
+
+        return savedPost;
     }
 
     @Transactional(readOnly = true)
@@ -32,11 +39,17 @@ public class PostService {
     }
 
     @Transactional
-    public Post updatePost(Long id, Post updatedPost) {
+    public Post updateWithOutbox(Long id, Post updatedPost) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new PostNotFoundException("Post not found with id " + id));
+                .orElseThrow(() -> new RuntimeException("Post not found with id " + id));
         post.setTitle(updatedPost.getTitle());
         post.setDescription(updatedPost.getDescription());
-        return postRepository.save(post);
+        Post savedPost = postRepository.save(post);
+
+        PostOutbox postOutbox = postOutboxConverter.convert(savedPost, PostOutboxEventType.POST_UPDATED);
+        postOutboxRepository.save(postOutbox);
+
+        return savedPost;
     }
+
 }

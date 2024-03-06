@@ -21,7 +21,7 @@ public class PostController {
     public ResponseEntity<Post> createPost(@RequestBody @Valid Post post) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(postService.createPost(post));
+                .body(postService.saveWithOutbox(post));
     }
 
     @GetMapping
@@ -36,6 +36,6 @@ public class PostController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody @Valid Post post) {
-        return ResponseEntity.ok(postService.updatePost(id, post));
+        return ResponseEntity.ok(postService.updateWithOutbox(id, post));
     }
 }

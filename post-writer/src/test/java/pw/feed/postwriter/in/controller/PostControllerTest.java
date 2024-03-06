@@ -42,7 +42,7 @@ class PostControllerTest {
         Post savedPost = createPost("Title", user, null);
 
         // When
-        when(postService.createPost(post)).thenReturn(savedPost);
+        when(postService.saveWithOutbox(post)).thenReturn(savedPost);
 
         // Then
         mockMvc.perform(post("/api/pw/posts")
@@ -95,7 +95,7 @@ class PostControllerTest {
         Post updatedPost = createPost("Title1", user, null);
 
         // When
-        when(postService.updatePost(1L, updatedPost)).thenReturn(updatedPost);
+        when(postService.updateWithOutbox(1L, updatedPost)).thenReturn(updatedPost);
 
         // Then
         mockMvc.perform(put("/api/pw/posts/{id}", 1L)
