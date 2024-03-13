@@ -1,4 +1,4 @@
-package pw.feed.postwriter.dataloaders;
+package pw.feed.postwriter.config;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +27,7 @@ public class StartupDataLoader {
         if (!userService.existsByEmail("Schwifty@universe.com")) {
             User user1 = createAndSaveUser("pickle", "Schwifty@universe.com");
             User user2 = createAndSaveUser("morty", "Geez@universe.com");
+            User user3 = createAndSaveUser("мeeseeks", "meeseeks@universe.com");
             Group group1 = createAndSaveGroup("Pickle team", "Pickle Pickle");
 
             createAndSavePost("Wubba Lubba", "Dub Dub", user1, null);

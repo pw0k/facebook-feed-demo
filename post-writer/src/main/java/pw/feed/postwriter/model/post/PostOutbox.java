@@ -20,7 +20,11 @@ import java.time.Instant;
 public class PostOutbox {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "post_ou_seq")
+    @SequenceGenerator(name = "post_ou_seq",
+            sequenceName = "post_outbox_id_seq",
+            allocationSize = 10)
     private Long id;
 
     @Column(name = "post_id", nullable = false)
@@ -36,12 +40,15 @@ public class PostOutbox {
     @Column(name = "created_at", updatable = false)
     private Instant createdAt;
 
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+
     @Column(nullable = false)
     private String username;
 
     private String groupname;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "post_outbox_status", nullable = false)
     @Enumerated(EnumType.STRING)
     private PostOutboxStatus postOutboxStatus;
 
@@ -49,3 +56,8 @@ public class PostOutbox {
     @Enumerated(EnumType.STRING)
     private PostOutboxEventType postOutboxEventType;
 }
+
+
+
+
+

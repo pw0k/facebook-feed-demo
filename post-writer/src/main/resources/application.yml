@@ -1,18 +1,23 @@
-server:
-  port : 8081
+server.port: 8081
+
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/maindb
+    url: jdbc:postgresql://localhost:5433/maindb?reWriteBatchedInserts=true
     # TODO: Vault or env
     username: user
     password: password
-  liquibase:
-    change-log: classpath:db/changelog.xml
+  liquibase.change-log: classpath:db/changelog.xml
   jpa:
     # Enable SQL logging
-    show-sql: true
+    #show-sql: true
     # Format the SQL statements for better readability
-    properties:
-      hibernate:
-        format_sql: true
+    properties.hibernate:
+      #format_sql: true
+      #generate_statistics: true
+      jdbc.batch_size: 30
+      order_inserts: true
+      order_updates: true
+      batch_versioned_data: true
   sql.init.mode: always
+
+topic.post-outbox.name: post-outbox
