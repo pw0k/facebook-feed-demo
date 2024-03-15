@@ -39,6 +39,7 @@ public class KafkaConfig {
                 .build();
     }
 
+    //todo avro
     @Bean
     public KafkaTemplate<String, PostOutbox> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());

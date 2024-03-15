@@ -19,4 +19,13 @@ public class PostOutbox {
     private String groupname;
     private PostOutboxStatus postOutboxStatus;
     private PostOutboxEventType postOutboxEventType;
+
+    @Override
+    public String toString() {
+        return "PostOutbox{" +
+                "username='" + username + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

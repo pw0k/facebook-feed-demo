@@ -8,6 +8,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientConfig {
     @Bean
     public WebClient webClient() {
-        return WebClient.create("http://localhost:8081"); // Adjust the URL to point to your Spring MVC application
+        return WebClient.create("http://localhost:8081");
     }
 }
