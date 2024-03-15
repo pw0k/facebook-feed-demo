@@ -12,7 +12,7 @@ java {
 }
 
 ext {
-	springVersion = '3.2.2'
+	springVersion = '3.2.3'
 	testcontainersVersion = '1.19.3'
 	lombokVersion = '1.18.30'
 }
