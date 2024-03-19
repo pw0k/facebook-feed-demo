@@ -1,13 +1,20 @@
 server.port: 8081
 
+topic.post-outbox.name: post-outbox
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/maindb?reWriteBatchedInserts=true
     # TODO: Vault or env
     username: user
     password: password
-  liquibase.change-log: classpath:db/changelog.xml
+
+  liquibase:
+    change-log: classpath:db/changelog.xml
+    drop-first: false
+
   jpa:
+    open-in-view: false
     # Enable SQL logging
     #show-sql: true
     # Format the SQL statements for better readability
@@ -18,6 +25,8 @@ spring:
       order_inserts: true
       order_updates: true
       batch_versioned_data: true
+
+  kafka.bootstrap-servers: localhost:29092
+
   sql.init.mode: always
 
-topic.post-outbox.name: post-outbox

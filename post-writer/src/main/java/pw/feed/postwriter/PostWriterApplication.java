@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 //todo test for all relationship
 //todo write facade for following and interface for services
 //todo optimistic locking ?? and transactions checking after load
+//todo MapStruct ??
 @SpringBootApplication
 @EnableScheduling
 public class PostWriterApplication {

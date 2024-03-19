@@ -12,12 +12,12 @@ import pw.feed.postwriter.service.GroupService;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pw.feed.postwriter.util.TestUtil.createGroup;
-import static pw.feed.postwriter.util.TestUtil.createUser;
+import static pw.feed.postwriter.util.Faker.createGroup;
+import static pw.feed.postwriter.util.Faker.createUser;
 
 @SpringBootTest
 @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:cleanup.sql")
-class GroupServiceTest extends AbstractPostgresContainer {
+class GroupServiceIntegrationTest extends AbstractPostgresContainer {
 
     @Autowired private UserRepository userRepository;
     @Autowired private GroupRepository groupRepository;

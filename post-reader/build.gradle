@@ -15,6 +15,7 @@ ext {
 	springVersion = '3.2.3'
 	testcontainersVersion = '1.19.3'
 	lombokVersion = '1.18.30'
+	springKafka = '3.1.2'
 }
 
 configurations {
@@ -36,7 +37,11 @@ dependencies {
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
 	testImplementation "org.springframework.boot:spring-boot-starter-test:${springVersion}"
-	testImplementation 'io.projectreactor:reactor-test'
+	testImplementation 'io.projectreactor:reactor-test:3.6.4'
+	testImplementation "org.springframework.kafka:spring-kafka-test:${springKafka}"
+	testImplementation "org.testcontainers:testcontainers:${testcontainersVersion}"
+	testImplementation "org.testcontainers:junit-jupiter:${testcontainersVersion}"
+	testImplementation "org.testcontainers:kafka:${testcontainersVersion}"
 }
 
 tasks.named('test') {

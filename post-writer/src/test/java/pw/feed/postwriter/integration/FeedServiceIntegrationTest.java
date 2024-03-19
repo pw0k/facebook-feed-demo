@@ -19,11 +19,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pw.feed.postwriter.util.TestUtil.*;
+import static pw.feed.postwriter.util.Faker.*;
 
 @SpringBootTest
 @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:cleanup.sql")
-class FeedServiceTest extends AbstractPostgresContainer {
+class FeedServiceIntegrationTest extends AbstractPostgresContainer {
 
     @Autowired private FeedService feedService;
     @Autowired private FollowService followService;

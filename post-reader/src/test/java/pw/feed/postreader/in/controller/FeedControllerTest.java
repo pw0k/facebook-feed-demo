@@ -3,16 +3,19 @@ package pw.feed.postreader.in.controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.web.reactive.server.WebTestClient;
-
-import java.io.IOException;
-
+import pw.feed.postreader.config.WebClientConfig;
 
 @WebFluxTest(FeedController.class)
+@Import(WebClientConfig.class)
 public class FeedControllerTest {
 
     @Autowired
     private WebTestClient webTestClient;
+
+//    @MockBean
+//    private WebClient webClient;
 
     @Test
     public void testHomeEndpoint() {

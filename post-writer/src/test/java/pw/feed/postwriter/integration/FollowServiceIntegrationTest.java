@@ -11,11 +11,11 @@ import pw.feed.postwriter.service.FollowService;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pw.feed.postwriter.util.TestUtil.createUser;
+import static pw.feed.postwriter.util.Faker.createUser;
 
 @SpringBootTest
 @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:cleanup.sql")
-public class FollowServiceTest extends AbstractPostgresContainer {
+public class FollowServiceIntegrationTest extends AbstractPostgresContainer {
 
     @Autowired
     private UserRepository userRepository;

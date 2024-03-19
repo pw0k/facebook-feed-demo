@@ -11,10 +11,10 @@ import pw.feed.postwriter.service.FollowService;
 import pw.feed.postwriter.service.UserService;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pw.feed.postwriter.util.TestUtil.createUser;
+import static pw.feed.postwriter.util.Faker.createUser;
 
 @SpringBootTest
-public class UserServiceTest extends AbstractPostgresContainer {
+public class UserServiceIntegrationTest extends AbstractPostgresContainer {
 
     @Autowired
     private UserService userService;

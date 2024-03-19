@@ -12,12 +12,12 @@ import pw.feed.postwriter.service.PostService;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pw.feed.postwriter.util.TestUtil.createPost;
-import static pw.feed.postwriter.util.TestUtil.createUser;
+import static pw.feed.postwriter.util.Faker.createPost;
+import static pw.feed.postwriter.util.Faker.createUser;
 
 @SpringBootTest
 @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:cleanup.sql")
-public class PostServiceTest extends AbstractPostgresContainer {
+public class PostServiceIntegrationTest extends AbstractPostgresContainer {
 
     @Autowired
     PostService postService;
@@ -38,7 +38,7 @@ public class PostServiceTest extends AbstractPostgresContainer {
         userRepository.save(user);
         Post savedPost = postService.saveWithOutbox(post);
         List<PostOutbox> postOutboxList =
-                postOutboxRepository.findAllByPostOutboxEventType(PostOutboxEventType.POST_CREATED);
+                postOutboxRepository.findLimitedPendingPostOutboxesForUpdate(10);
 
         // Then
         assertAll(
@@ -67,7 +67,7 @@ public class PostServiceTest extends AbstractPostgresContainer {
         savedPost.setTitle("Updated title");
         Post updatedPost =postService.updateWithOutbox(savedPost.getId(), savedPost);
         List<PostOutbox> postOutboxList =
-                postOutboxRepository.findAllByPostOutboxEventType(PostOutboxEventType.POST_UPDATED);
+                postOutboxRepository.findLimitedPendingPostOutboxesForUpdate(10);
 
 
         // Then
