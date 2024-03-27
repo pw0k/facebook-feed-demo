@@ -9,7 +9,6 @@ public class PostOutboxCustomRepositoryImpl implements PostOutboxCustomRepositor
     @PersistenceContext
     private EntityManager entityManager;
 
-    //todo blocking for using with several pods - FOR UPDATE SKIP LOCKED  ??
     @Override
     public List<PostOutbox> findLimitedPendingPostOutboxesForUpdate(int limit) {
         String sql = "SELECT * FROM post_outbox WHERE post_outbox_status = 'PENDING' ORDER BY created_at ASC FOR UPDATE SKIP LOCKED";
