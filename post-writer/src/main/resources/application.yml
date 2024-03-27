@@ -8,6 +8,7 @@ spring:
     # TODO: Vault or env
     username: user
     password: password
+    #hikari.transaction-isolation: TRANSACTION_READ_COMMITTED
 
   liquibase:
     change-log: classpath:db/changelog.xml
